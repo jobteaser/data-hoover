@@ -79,6 +79,18 @@ event_payload = {
 nozzle.absorb('event_name', event_payload)
 ```
 
+If you are using [RSpec](https://github.com/rspec/rspec-core), you can `require
+data_hoover/rspec/matchers` in your spec file. This will let you do things like
+``` ruby
+it { expect(subject).to track(event_name).with(event_payload) }
+```
+in your test files (make sure your subject responds to `#call`).
+If your subject does not respond to call, you can also go with the block
+version:
+``` ruby
+expect { subject }.to track(event_name).with(event_payload) }
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run
